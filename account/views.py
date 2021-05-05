@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import (
                                   authenticate,
                                   logout ,
-                                  login
+                                  login,
                               )
 from django.shortcuts import (
                                   render,
@@ -18,14 +18,11 @@ from .forms import (
                 )
 
 
-
-
 def home(request):
     """
       Home View Renders base.html
     """
     return render(request, "base.html", {})
-
 
 
 def registration_view(request):
@@ -36,11 +33,11 @@ def registration_view(request):
     if request.POST:
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            account = form.save()
+            x = form.save()
             email    = form.cleaned_data.get('email')
             raw_pass = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=raw)
-            login(request, account, backend='django.contrib.auth.backends.ModelBackend')
+            account = authenticate(email=email, password=raw_pass)
+            login(request, account)
             messages.success(request, "You have been Registered as {}".format(request.user.username))
             return redirect('home')
         else:

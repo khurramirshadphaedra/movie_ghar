@@ -4,11 +4,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 
+
 class RegistrationForm(UserCreationForm):
     """
       Form for Registering new users
     """
     email = email = forms.EmailField(required=True)
+
     class Meta:
         model = Account
         fields = ('email', 'username', 'password1', 'password2')
@@ -22,18 +24,16 @@ class RegistrationForm(UserCreationForm):
 
 
 class AccountAuthenticationForm(forms.ModelForm):
-    """
-      Form for Logging in  users
-    """
-    password  = forms.CharField(label= 'Password', widget=forms.PasswordInput)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
     class Meta:
         model  =  Account
         fields =  ('email', 'password')
         widgets = {
                    'email':forms.TextInput(attrs={'class':'form-control'}),
-                   'password':forms.TextInput(attrs={'class':'form-control'}),
+                   'password':forms.TextInput(attrs={'class': 'form-control'}),
         }
+
     def __init__(self, *args, **kwargs):
         """
           specifying styles to fields
@@ -49,6 +49,7 @@ class AccountAuthenticationForm(forms.ModelForm):
             password = self.cleaned_data.get('password')
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError('Invalid Login')
+
 
 class AccountUpdateform(forms.ModelForm):
     """
@@ -78,6 +79,7 @@ class AccountUpdateform(forms.ModelForm):
             except Account.DoesNotExist:
                 return email
             raise forms.ValidationError("Email '%s' already in use." %email)
+
     def clean_username(self):
         if self.is_valid():
             username = self.cleaned_data['username']

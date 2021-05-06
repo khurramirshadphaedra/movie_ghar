@@ -1,0 +1,15 @@
+<form method="POST" action="update/{{ user.id }}">
+      {% csrf_token %}
+    <title>Update Detail</title>
+<table style="width:50%">
+  <tr>
+    <th>UserName</th>
+    <th>Email</th>
+  </tr>
+    <tr>
+        <td><input type="text"  name="username" required="{{ user.username }}"></td>
+        <td><input type="email"  name="email" required="{{ user.email }}"></td>
+    </tr>
+</table>
+      <button type="submit">Update</button>
+</form>

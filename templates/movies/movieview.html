@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie View</title>
+    </head>
+    <body>
+        <table style="width:80%">
+            <th>Name</th>
+            <th>Short Description</th>
+            <th>Long Description</th>
+            <th>Thumbnail</th>
+            <th>Video Url</th>
+            <th>Delete Movie</th>
+            <th>Edit Movie</th>
+            <tbody>
+                {% for i in movie %}
+
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.shot_desc }}</td>
+                            <td>{{ i.long_desc }}</td>
+                            <td>
+                                <img src="{{ i.thumbnail }}">
+                            </td>
+                            <td>
+                                <iframe width="420" height="315"
+                                        src="{{ i.video_url }}"></iframe>
+                            </td>
+                        <td><a href="delete_movie/{{ i.id }}"> Delete </a></td>
+                    <td><a href="edit_movie/{{ i.id }}"> Edit </a>
+                         </td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

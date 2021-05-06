@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Detail</title>
+</head>
+<body>
+<table style="width:100%">
+  <tr>
+    <th>Email</th>
+    <th>UserName</th>
+      <th>Delete</th>
+      <th>Edit</th>
+  </tr>
+  <tr>
+      {% for i in user %}
+    <td>{{ i.email }}</td>
+    <td>{{ i.username }}</td>
+          <td><a href=" delete/{{i.id}}">Delete</a> </td>
+          <td><a href="edit/{{ i.id }}">Edit</a> </td>
+  </tr>
+
+    {% endfor %}
+
+</table>
+</body>
+</html>

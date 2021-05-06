@@ -1,9 +1,7 @@
 from .models import Account
-from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, get_object_or_404, redirect
-
 from .forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateform
 
 
@@ -16,7 +14,7 @@ def registration_view(request):
     if request.POST:
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            x = form.save()
+            form.save()
             email = form.cleaned_data.get('email')
             raw_pass = form.cleaned_data.get('password1')
             account = authenticate(email=email, password=raw_pass)
@@ -65,19 +63,51 @@ def account_view(request):
         return redirect("login")
     context = {}
     if request.POST:
-        form = AccountUpdateform(request.POST, instance = request.user)
+        form = AccountUpdateform(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, "profile Updated")
         else:
             messages.error(request, "Please Correct Below Errors")
     else:
-        form  = AccountUpdateform(
+        form = AccountUpdateform(
             initial={
-            'email': request.user.email,
-            'username': request.user.username,
+                'email': request.user.email,
+                'username': request.user.username,
             }
         )
-    context['account_form']=form
+    context['account_form'] = form
 
     return render(request, "accounts/userprofile.html", context)
+
+
+def show_detail(request, userid):
+    user = Account.objects.get(id=userid)
+    return render(request)
+
+
+def show(request):
+    user = Account.objects.all()
+    return render(request, 'accounts/show.html', context={'user': user})
+
+
+def delete(request, userid):
+    user = Account.objects.get(id=userid)
+    user.delete()
+    return redirect('show')
+
+
+def edit(request, userid):
+    user = Account.objects.get(id=userid)
+    return render(request, 'accounts/edit.html', {'user': user})
+
+
+def update(request, userid):
+    user = Account.objects.get(id=userid)
+    username = request.POST['username']
+    email = request.POST['email']
+    user.username = username
+    user.email = email
+    user.save()
+
+    return redirect('show')

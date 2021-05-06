@@ -1,0 +1,21 @@
+<form method="POST" action="update/{{ movie.id }}">
+      {% csrf_token %}
+    <title>Update Detail</title>
+<table style="width:50%">
+  <tr>
+      <th>movieName</th>
+    <th>short desc</th>
+    <th>Long desc</th>
+      <th>ThumbNail</th>
+      <th>Video Url</th>
+  </tr>
+    <tr>
+        <td><input type="text"  name="name" required="{{ movie.name }}"></td>
+        <td><input type="text"  name="shot_desc" required="{{ movie.shot_desc }}"></td>
+        <td><input type="text"  name="long_desc" required="{{ movie.long_desc }}"></td>
+        <td><input type="text"  name="thumbnail" required="{{ movie.thumbnail }}"></td>
+        <td><input type="text"  name="video_url" required="{{ movie.video_url }}"></td>
+    </tr>
+</table>
+      <button type="submit">Update</button>
+</form>

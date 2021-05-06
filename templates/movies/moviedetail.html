@@ -1,0 +1,32 @@
+<h1>Detail</h1>
+<hr/>
+<form method="POST">
+    {% csrf_token %}
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" placeholder="Enter Name" name="name" required></td>
+        </tr>
+         <tr>
+            <td>Short Desc</td>
+            <td><input type="text" placeholder="short desc" name="shot_desc" required></td>
+        </tr>
+        <tr>
+          <td>long Desc</td>
+            <td><input type="text" placeholder="long desc" name="long_desc" required></td>
+        </tr>
+         <td>Thumb Nail</td>
+            <td><input type="text" placeholder="thumb nail" name="thumbnail" required></td>
+        </tr>
+         <td>Url</td>
+            <td><input type="text" placeholder="url" name="video_url" required></td>
+        </tr>
+        <td><button type="submit">submit</button></td>
+
+    </table>
+      {% if messages %}
+    {% for msg in messages %}
+    <b>{{ msg }}</b>
+    {% endfor %}
+    {% endif %}
+</form>

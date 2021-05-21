@@ -1,29 +1,39 @@
 <h1>Detail</h1>
 <hr/>
+<head>
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
 <form method="POST">
     {% csrf_token %}
-    <table border="1">
+<div class ="container">
+    <table class="table table-bordered">
         <tr>
             <td>Name</td>
-            <td><input type="text" placeholder="Enter Name" name="name" required></td>
+            <td><input type="text" class="form-control" placeholder="Enter Name" name="name" required></td>
         </tr>
          <tr>
             <td>Short Desc</td>
-            <td><input type="text" placeholder="short desc" name="shot_desc" required></td>
+            <td><input type="text" class="form-control" placeholder="short desc" name="shot_desc" required></td>
         </tr>
         <tr>
           <td>long Desc</td>
-            <td><input type="text" placeholder="long desc" name="long_desc" required></td>
+            <td><input type="text" class="form-control" placeholder="long desc" name="long_desc" required></td>
         </tr>
          <td>Thumb Nail</td>
-            <td><input type="text" placeholder="thumb nail" name="thumbnail" required></td>
+            <td><input type="text" class="form-control" placeholder="thumb nail" name="thumbnail" required></td>
         </tr>
          <td>Url</td>
-            <td><input type="text" placeholder="url" name="video_url" required></td>
+            <td><input type="text" class="form-control" placeholder="url" name="video_url" required></td>
         </tr>
-        <td><button type="submit">submit</button></td>
 
     </table>
+    <button type="submit">submit</button>
+</div>
       {% if messages %}
     {% for msg in messages %}
     <b>{{ msg }}</b>
